@@ -20,7 +20,7 @@
           type="text"
           class="edit"
           v-model.trim="item.title"
-          ref="editInput"
+          :id="+item.id"
           @keyup.enter="editTitle($event,item.id)"
         >
       </div>
@@ -47,7 +47,8 @@ export default {
     dblEdit(id, index) {
       this.editedId = id
       this.$nextTick(() => {
-        this.$refs.editInput[index].focus()
+        const ipt = document.getElementById(+id)
+        ipt.focus()
       })
     },
     editTitle(event, id) {
