@@ -44,6 +44,7 @@
 </template>
 
 <script>
+import { setLocal } from '@/utils/storage'
 import StateVue from '@/components/State.vue'
 import { mapState } from 'vuex'
 export default {
@@ -74,6 +75,15 @@ export default {
         completed: false
       })
       this.title = ''
+    }
+  },
+  watch: {
+    todoList: {
+      immediate: true,
+      deep: true,
+      handler(val) {
+        setLocal('todoList', val)
+      }
     }
   }
 }

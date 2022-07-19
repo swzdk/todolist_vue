@@ -1,12 +1,13 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import { setLocal, getLocal } from '@/utils/storage'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    todoList: [],
-    currentState: 0
+    todoList: getLocal('todoList') || [],
+    currentState: getLocal('currentState') || 0
   },
   getters: {
     allList(state) {
@@ -28,6 +29,7 @@ export default new Vuex.Store({
     },
     changeCurrentState(state, payload) {
       state.currentState = payload
+      setLocal('currentState', state.currentState)
     },
     clearCompleted(state) {
       state.todoList = state.todoList.filter((item) => !item.completed)
