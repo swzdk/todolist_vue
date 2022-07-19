@@ -15,6 +15,6 @@ module.exports = {
     'space-before-function-paren': 0,
     'vue/no-mutating-props': 0,
     'vue/no-multiple-template-root': 0,
-    'eslint-plugin-vue': 0
+    'eslint-plugin-vue': 'off'
   }
 }

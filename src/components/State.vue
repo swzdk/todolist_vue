@@ -17,7 +17,11 @@
         >{{item.UpFirstName}}</a>
       </li>
     </ul>
-    <button class="clear-completed">Clear completed</button>
+    <button
+      v-if="todoList.length - UncompletedCounts>0"
+      class="clear-completed"
+      @click="$store.commit('clearCompleted')"
+    >Clear completed</button>
   </div>
 </template>
 

@@ -28,6 +28,9 @@ export default new Vuex.Store({
     },
     changeCurrentState(state, payload) {
       state.currentState = payload
+    },
+    clearCompleted(state) {
+      state.todoList = state.todoList.filter((item) => !item.completed)
     }
   },
   actions: {},
