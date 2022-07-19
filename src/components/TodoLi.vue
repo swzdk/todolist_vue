@@ -14,7 +14,10 @@
             v-model="item.completed"
           >
           <label>{{item.title}}</label>
-          <button class="destroy"></button>
+          <button
+            class="destroy"
+            @click="deleteTodo(item.id)"
+          ></button>
         </div>
         <input
           type="text"
@@ -58,6 +61,9 @@ export default {
       })
       event.target.value = ''
       this.editedId = null
+    },
+    deleteTodo(id) {
+      this.$store.commit('deleteTodo', id)
     }
   }
 }

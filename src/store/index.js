@@ -37,6 +37,10 @@ export default new Vuex.Store({
     editTodoTitle(state, payload) {
       const index = state.todoList.findIndex((item) => item.id === payload.id)
       state.todoList[index].title = payload.title
+    },
+    deleteTodo(state, payload) {
+      const index = state.todoList.findIndex((item) => item.id === payload)
+      state.todoList.splice(index, 1)
     }
   },
   actions: {},
