@@ -5,7 +5,8 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    todoList: []
+    todoList: [],
+    currentState: 0
   },
   getters: {
     allList(state) {
@@ -21,6 +22,9 @@ export default new Vuex.Store({
   mutations: {
     addTodoList(state, payload) {
       state.todoList.unshift(payload)
+    },
+    changeCurrentState(state, payload) {
+      state.currentState = payload
     }
   },
   actions: {},

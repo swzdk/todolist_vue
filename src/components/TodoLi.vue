@@ -3,7 +3,7 @@
     <li
       v-for="item in list"
       :key="item.id"
-      :class={editing:false}
+      :class="{editing:false,completed:item.completed}"
     >
       <div id="item-template">
         <div class="view">

@@ -9,6 +9,9 @@ export default {
   components: {
     TodoLiVue
   },
+  created() {
+    this.$store.commit('changeCurrentState', 1)
+  },
   computed: {
     ...mapGetters(['activeList'])
   }
