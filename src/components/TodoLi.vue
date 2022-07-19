@@ -1,26 +1,39 @@
 <template>
-  <li>
-    <div id="item-template">
-      <div class="view">
+  <ul class="todo-list">
+    <li
+      v-for="item in list"
+      :key="item.id"
+      :class={editing:false}
+    >
+      <div id="item-template">
+        <div class="view">
+          <input
+            class="toggle"
+            type="checkbox"
+            v-model="item.completed"
+          >
+          <label>{{item.title}}</label>
+          <button class="destroy"></button>
+        </div>
         <input
-          class="toggle"
-          type="checkbox"
-          checked
+          class="edit"
+          value=""
         >
-        <label>我是标题</label>
-        <button class="destroy"></button>
       </div>
-      <input
-        class="edit"
-        value="<%- title %>"
-      >
-    </div>
-  </li>
+    </li>
+  </ul>
+
 </template>
 
 <script>
 export default {
-  name: 'TodoLiVue'
+  name: 'TodoLiVue',
+  props: {
+    list: {
+      type: Array,
+      required: true
+    }
+  }
 }
 </script>
 

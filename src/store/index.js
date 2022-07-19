@@ -5,10 +5,24 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    todoList: [1]
+    todoList: []
   },
-  getters: {},
-  mutations: {},
+  getters: {
+    allList(state) {
+      return state.todoList
+    },
+    activeList(state) {
+      return state.todoList.filter((item) => !item.completed)
+    },
+    completedList(state) {
+      return state.todoList.filter((item) => item.completed)
+    }
+  },
+  mutations: {
+    addTodoList(state, payload) {
+      state.todoList.unshift(payload)
+    }
+  },
   actions: {},
   modules: {}
 })

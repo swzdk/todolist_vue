@@ -5,9 +5,11 @@
       <header class="header">
         <h1>todos</h1>
         <input
+          v-model.trim="title"
           class="new-todo"
           placeholder="What needs to be done?"
           autofocus
+          @keyup.enter="createTd"
         >
       </header>
       <!-- 主体区域 -->
@@ -21,9 +23,7 @@
           type="checkbox"
         >
         <label for="toggle-all">Mark all as complete</label>
-        <ul class="todo-list">
-          <router-view></router-view>
-        </ul>
+        <router-view></router-view>
       </section>
       <!-- 底部，有数据时显示 -->
       <footer
@@ -49,8 +49,23 @@ export default {
   components: {
     StateVue
   },
+  data() {
+    return {
+      title: ''
+    }
+  },
   computed: {
     ...mapState(['todoList'])
+  },
+  methods: {
+    createTd() {
+      this.$store.commit('addTodoList', {
+        id: this.todoList.length + 1,
+        title: this.title,
+        completed: false
+      })
+      this.title = ''
+    }
   }
 }
 </script>
