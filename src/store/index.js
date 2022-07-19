@@ -31,6 +31,10 @@ export default new Vuex.Store({
     },
     clearCompleted(state) {
       state.todoList = state.todoList.filter((item) => !item.completed)
+    },
+    editTodoTitle(state, payload) {
+      const index = state.todoList.findIndex((item) => item.id === payload.id)
+      state.todoList[index].title = payload.title
     }
   },
   actions: {},

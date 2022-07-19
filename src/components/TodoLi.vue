@@ -1,9 +1,10 @@
 <template>
   <ul class="todo-list">
     <li
-      v-for="item in list"
+      v-for="(item,index) in list"
       :key="item.id"
-      :class="{editing:false,completed:item.completed}"
+      :class="{editing:item.id === editedId,completed:item.completed}"
+      @dblclick="dblEdit(item.id,index)"
     >
       <div id="item-template">
         <div class="view">
@@ -16,8 +17,11 @@
           <button class="destroy"></button>
         </div>
         <input
+          type="text"
           class="edit"
-          value=""
+          v-model.trim="item.title"
+          ref="editInput"
+          @keyup.enter="editTitle($event,item.id)"
         >
       </div>
     </li>
@@ -32,6 +36,27 @@ export default {
     list: {
       type: Array,
       required: true
+    }
+  },
+  data() {
+    return {
+      editedId: null
+    }
+  },
+  methods: {
+    dblEdit(id, index) {
+      this.editedId = id
+      this.$nextTick(() => {
+        this.$refs.editInput[index].focus()
+      })
+    },
+    editTitle(event, id) {
+      this.$store.commit('editTodoTitle', {
+        id,
+        title: event.target.value
+      })
+      event.target.value = ''
+      this.editedId = null
     }
   }
 }
