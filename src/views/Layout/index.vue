@@ -21,6 +21,7 @@
           class="toggle-all"
           id="toggle-all"
           type="checkbox"
+          v-model="checkedALL"
         >
         <label for="toggle-all">Mark all as complete</label>
         <router-view></router-view>
@@ -55,7 +56,15 @@ export default {
     }
   },
   computed: {
-    ...mapState(['todoList'])
+    ...mapState(['todoList']),
+    checkedALL: {
+      get() {
+        return this.todoList.every((item) => item.completed)
+      },
+      set(val) {
+        this.todoList.forEach((item) => (item.completed = val))
+      }
+    }
   },
   methods: {
     createTd() {

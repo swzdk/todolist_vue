@@ -1,6 +1,11 @@
 <template>
   <div id="stats-template">
-    <!-- <span class="todo-count"><strong><%= remaining %></strong> <%= remaining === 1 ? 'item' : 'items' %> left</span> -->
+    <span
+      class="todo-count"
+      v-if="todoList.length"
+    >
+      <strong>{{UncompletedCounts}}</strong> {{ UncompletedCounts <= 1 ? 'item' : 'items'}} left
+    </span>
     <ul class="filters">
       <li
         v-for="item in state"
@@ -17,7 +22,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapGetters } from 'vuex'
 export default {
   name: 'stateVue',
   data() {
@@ -42,7 +47,8 @@ export default {
     }
   },
   computed: {
-    ...mapState(['currentState'])
+    ...mapState(['currentState', 'todoList']),
+    ...mapGetters(['UncompletedCounts'])
   }
 }
 </script>

@@ -17,6 +17,9 @@ export default new Vuex.Store({
     },
     completedList(state) {
       return state.todoList.filter((item) => item.completed)
+    },
+    UncompletedCounts(state) {
+      return state.todoList.filter((item) => !item.completed).length
     }
   },
   mutations: {
